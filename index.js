@@ -103,6 +103,8 @@ module.exports = (plugins, opts) => {
 				setImmediate(cb, new gutil.PluginError(PLUGIN_NAME, err, {fileName: file.path}));
 			});
 	}, cb => {
+		if (opts.quiet)
+			return cb();
 		const percent = totalBytes > 0 ? (totalSavedBytes / totalBytes) * 100 : 0;
 		let msg = `Minified ${totalFiles} ${plur('image', totalFiles)}`;
 
